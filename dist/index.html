@@ -18,6 +18,14 @@
       <span>CRUX <b>&</b> CRASH</span>
     </a>
     <div class="top-actions">
+      <label class="speed-control">TEMPO
+        <select id="speedSelect" aria-label="Geschwindigkeit der Computergegner">
+          <option value="1.8">LANGSAM</option>
+          <option value="1" selected>NORMAL</option>
+          <option value="0.55">SCHNELL</option>
+          <option value="0.18">TURBO</option>
+        </select>
+      </label>
       <button class="icon-button" id="soundBtn" aria-label="Ton ausschalten" title="Ton an/aus">
         <span class="sound-icon">♪</span>
       </button>
@@ -32,14 +40,14 @@
       <div class="route-line route-two" aria-hidden="true"></div>
 
       <div class="opponent-zone" aria-label="Computergegner">
-        <button class="opponent-seat" data-suspect="1" aria-label="BeatBot verdächtigen">
+        <button class="opponent-seat" data-suspect="1" aria-label="Chuck verdächtigen">
           <span class="speech" id="speech1">Tempo halten.</span>
-          <span class="player-label"><span class="avatar beat-avatar">BB</span><span><strong>BEATBOT</strong><small id="botMood1">hämmert sich warm</small></span></span>
+          <span class="player-label"><span class="avatar beat-avatar">CH</span><span><strong>CHUCK</strong><small id="botMood1">hämmert sich warm</small></span></span>
           <span class="mini-bot-hand" id="botHand1"></span><span class="card-count"><b id="botCount1">7</b> GRIFFE</span>
         </button>
-        <button class="opponent-seat center-opponent" data-suspect="2" aria-label="BetaBandit verdächtigen">
+        <button class="opponent-seat center-opponent" data-suspect="2" aria-label="Naphta verdächtigen">
           <span class="speech" id="speech2">Ich kenne die Beta.</span>
-          <span class="player-label"><span class="avatar beta-avatar">β</span><span><strong>BETABANDIT</strong><small id="botMood2">mustert deine Hand</small></span></span>
+          <span class="player-label"><span class="avatar beta-avatar">N</span><span><strong>NAPHTA</strong><small id="botMood2">mustert deine Hand</small></span></span>
           <span class="mini-bot-hand" id="botHand2"></span><span class="card-count"><b id="botCount2">7</b> GRIFFE</span>
         </button>
         <button class="opponent-seat" data-suspect="3" aria-label="RouteSetter verdächtigen">
@@ -148,6 +156,7 @@
         <li><b>Schnell Karten loswerden:</b> ROUTE FLASH wirft eine komplette Farbe ab. CAMPUS RUN wirft 5 bis 25 Karten ab – je größer deine Hand, desto mehr.</li>
         <li><b>Verbrennen:</b> CHALK FIRE entfernt bei allen bis zu drei Karten. Die seltene GRIFFLAWINE verbrennt sofort die Hälfte deiner gesamten Hand.</li>
         <li><b>Riesige Hände:</b> Es werden immer 160 Karten gleichzeitig gezeigt. Mit ‹ und › wechselst du durch alle Kartenblöcke.</li>
+        <li><b>Bot-Tempo:</b> Oben kannst du jederzeit zwischen LANGSAM, NORMAL, SCHNELL und TURBO wechseln.</li>
         <li><b>CRUX:</b> Bei einer letzten Karte CRUX drücken. Vergessen kostet +4. Wer zuerst keine Karten mehr hat, gewinnt.</li>
       </ol>
       <div class="danger-list"><span>BREAK</span><span>ABSEILEN</span><span>BETA-TAUSCH</span><span>+2 PUMP</span><span>+6 TROMMELWIRBEL</span><span>+8 CHALK BLAST</span><span>+12 DOUBLE KICK</span><span>+16 WALL COLLAPSE</span><span>+20 WALL OF SOUND</span><span>×2 DOUBLE TROUBLE</span><span>×4 QUAD BLAST</span><span>ROUTE FLASH</span><span>CAMPUS RUN</span><span>CHALK FIRE</span><span>GRIFFLAWINE −½</span><span>CRASH SOLO</span><span>FREE SOLO</span></div>
