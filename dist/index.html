@@ -82,7 +82,12 @@
             <span><strong id="playerNameDisplay">SEILFREI</strong><small id="playerMood">Finger warm. Los geht’s.</small></span>
           </div>
           <button class="crux-button" id="cruxBtn" hidden>CRUX!</button>
-          <div class="card-count"><b id="playerCount">7</b> GRIFFE</div>
+          <div class="hand-window" aria-label="Große Kartenhand durchsuchen">
+            <button id="handPrev" aria-label="Vorherige Karten">‹</button>
+            <span id="handRange">7 KARTEN</span>
+            <button id="handNext" aria-label="Nächste Karten">›</button>
+          </div>
+          <div class="card-count player-card-count"><b id="playerCount">7</b><span>GRIFFE</span></div>
         </div>
         <div class="player-hand" id="playerHand" aria-label="Deine Karten"></div>
       </div>
@@ -140,9 +145,12 @@
         <li><b>Strafen stapeln:</b> Auf eine aktive Ziehstrafe darf jede +Karte gelegt werden. Alle Werte werden addiert.</li>
         <li><b>Multiplizieren:</b> ×2 und ×4 funktionieren nur auf einer aktiven Strafe. Aus +6 und ×4 wird sofort +24.</li>
         <li><b>Spezialkarten:</b> BREAK überspringt, ABSEILEN dreht die Richtung, FREE SOLO blockt eine komplette Strafe.</li>
+        <li><b>Schnell Karten loswerden:</b> ROUTE FLASH wirft alle Karten der gewählten Farbe ab. CAMPUS RUN wirft bis zu fünf ab.</li>
+        <li><b>Verbrennen:</b> CHALK FIRE entfernt bei allen Spielenden bis zu drei Karten endgültig aus dem Spiel.</li>
+        <li><b>Riesige Hände:</b> Es werden immer 160 Karten gleichzeitig gezeigt. Mit ‹ und › wechselst du durch alle Kartenblöcke.</li>
         <li><b>CRUX:</b> Bei einer letzten Karte CRUX drücken. Vergessen kostet +4. Wer zuerst keine Karten mehr hat, gewinnt.</li>
       </ol>
-      <div class="danger-list"><span>BREAK</span><span>ABSEILEN</span><span>BETA-TAUSCH</span><span>+2 PUMP</span><span>+6 TROMMELWIRBEL</span><span>+8 CHALK BLAST</span><span>+12 DOUBLE KICK</span><span>+16 WALL COLLAPSE</span><span>+20 WALL OF SOUND</span><span>×2 DOUBLE TROUBLE</span><span>×4 QUAD BLAST</span><span>CRASH SOLO</span><span>FREE SOLO</span></div>
+      <div class="danger-list"><span>BREAK</span><span>ABSEILEN</span><span>BETA-TAUSCH</span><span>+2 PUMP</span><span>+6 TROMMELWIRBEL</span><span>+8 CHALK BLAST</span><span>+12 DOUBLE KICK</span><span>+16 WALL COLLAPSE</span><span>+20 WALL OF SOUND</span><span>×2 DOUBLE TROUBLE</span><span>×4 QUAD BLAST</span><span>ROUTE FLASH</span><span>CAMPUS RUN</span><span>CHALK FIRE</span><span>CRASH SOLO</span><span>FREE SOLO</span></div>
     </section>
   </div>
 
