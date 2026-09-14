@@ -1,0 +1,15 @@
+.player-hand{
+  justify-content:safe center;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:var(--coral) rgba(23,23,22,.14);
+  scrollbar-gutter:stable;
+  padding-bottom:12px;
+  touch-action:pan-x;
+}
+.player-hand::-webkit-scrollbar{height:8px}
+.player-hand::-webkit-scrollbar-track{background:rgba(23,23,22,.14)}
+.player-hand::-webkit-scrollbar-thumb{background:var(--coral);border-radius:0}
+.player-hand .game-card{scroll-snap-align:center}
+@media(max-width:900px){.player-hand{justify-content:flex-start}}

@@ -1,0 +1,9 @@
+(()=>{
+  const context=document.modelContext;
+  if(!context?.registerTool)return;
+  const count=()=>Number(document.querySelector('#playerCount')?.textContent||0);
+  const register=tool=>{try{void Promise.resolve(context.registerTool(tool)).catch(()=>{})}catch{}}
+  register({name:'start_crux_and_crash_game',title:'Neue Runde starten',description:'Startet eine neue Runde Crux & Crash gegen drei Computergegner.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(){const restart=document.querySelector('#endModal.open #restartBtn');const start=document.querySelector('#startModal.open #startBtn');(restart||start)?.click();return{status:'started',playerCards:count()}}});
+  register({name:'play_crux_card',title:'Karte spielen',description:'Spielt eine aktuell erlaubte Karte aus der Hand. Der Index beginnt bei 0.',inputSchema:{type:'object',properties:{index:{type:'integer',minimum:0}},required:['index'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute({index}){const cards=[...document.querySelectorAll('#playerHand .game-card')];const card=cards[index];if(!card)throw new Error('Kartenindex existiert nicht');if(card.disabled)throw new Error('Diese Karte ist aktuell nicht spielbar');card.click();return{status:'played',remainingCards:count()}}});
+  register({name:'draw_crux_cards',title:'Karte oder Strafe ziehen',description:'Zieht eine Karte oder nimmt den gesamten aktuellen Strafstapel auf.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(){const button=document.querySelector('#drawPile');if(button?.disabled)throw new Error('Ziehen ist aktuell nicht möglich');button.click();return{status:'drawn',playerCards:count()}}});
+})();

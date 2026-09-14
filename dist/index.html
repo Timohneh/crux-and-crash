@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="Crux & Crash – das übertriebene Karten-Duell zwischen Boulderwand und Drumkit.">
+  <title>Crux & Crash</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151515'/%3E%3Ccircle cx='32' cy='34' r='21' fill='%23ff4d00'/%3E%3Cpath d='M16 31h32M23 18l5 27M41 18l-5 27' stroke='%23fff4df' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="overrides.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Crux & Crash neu laden">
+      <span class="brand-mark"><i></i><i></i></span>
+      <span>CRUX <b>&</b> CRASH</span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-button" id="soundBtn" aria-label="Ton ausschalten" title="Ton an/aus">
+        <span class="sound-icon">♪</span>
+      </button>
+      <button class="text-button" id="rulesBtn">REGELN</button>
+    </div>
+  </header>
+
+  <main class="game-shell">
+    <section class="arena" aria-label="Spielfeld">
+      <div class="wall-grid" aria-hidden="true"></div>
+      <div class="route-line route-one" aria-hidden="true"></div>
+      <div class="route-line route-two" aria-hidden="true"></div>
+
+      <div class="opponent-zone" aria-label="Computergegner">
+        <button class="opponent-seat" data-suspect="1" aria-label="BeatBot verdächtigen">
+          <span class="speech" id="speech1">Tempo halten.</span>
+          <span class="player-label"><span class="avatar beat-avatar">BB</span><span><strong>BEATBOT</strong><small id="botMood1">hämmert sich warm</small></span></span>
+          <span class="mini-bot-hand" id="botHand1"></span><span class="card-count"><b id="botCount1">7</b> GRIFFE</span>
+        </button>
+        <button class="opponent-seat center-opponent" data-suspect="2" aria-label="BetaBandit verdächtigen">
+          <span class="speech" id="speech2">Ich kenne die Beta.</span>
+          <span class="player-label"><span class="avatar beta-avatar">β</span><span><strong>BETABANDIT</strong><small id="botMood2">mustert deine Hand</small></span></span>
+          <span class="mini-bot-hand" id="botHand2"></span><span class="card-count"><b id="botCount2">7</b> GRIFFE</span>
+        </button>
+        <button class="opponent-seat" data-suspect="3" aria-label="RouteSetter verdächtigen">
+          <span class="speech" id="speech3">Meine Wand. Meine Regeln.</span>
+          <span class="player-label"><span class="avatar route-avatar">RS</span><span><strong>ROUTESETTER</strong><small id="botMood3">schraubt heimlich um</small></span></span>
+          <span class="mini-bot-hand" id="botHand3"></span><span class="card-count"><b id="botCount3">7</b> GRIFFE</span>
+        </button>
+      </div>
+
+      <div class="center-stage">
+        <div class="deck-wrap">
+          <button class="card deck-card" id="drawPile" aria-label="Karte ziehen">
+            <span class="deck-logo">C<span>&</span>C</span>
+          </button>
+          <span>ZIEHEN</span>
+        </div>
+
+        <div class="status-column">
+          <div class="turn-pill" id="turnPill"><span></span> DU BIST DRAN</div>
+          <div class="penalty-meter" id="penaltyMeter" hidden>
+            <small>STRAFE GESTAPELT</small>
+            <strong>+<span id="penaltyValue">0</span></strong>
+          </div>
+          <div class="route-indicator" id="routeIndicator">
+            <span>AKTUELLE ROUTE</span><i></i><b id="routeName">MINT</b>
+          </div>
+        </div>
+
+        <div class="discard-wrap">
+          <div class="cymbal" aria-hidden="true"><span></span></div>
+          <div class="discard-pile" id="discardPile" aria-live="polite"></div>
+          <span>CRASH</span>
+        </div>
+      </div>
+
+      <div class="player-zone">
+        <div class="player-row">
+          <div class="player-label">
+            <span class="avatar you-avatar">DU</span>
+            <span><strong id="playerNameDisplay">SEILFREI</strong><small id="playerMood">Finger warm. Los geht’s.</small></span>
+          </div>
+          <button class="crux-button" id="cruxBtn" hidden>CRUX!</button>
+          <div class="card-count"><b id="playerCount">7</b> GRIFFE</div>
+        </div>
+        <div class="player-hand" id="playerHand" aria-label="Deine Karten"></div>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="panel-heading">
+        <span>SESSION LOG</span>
+        <i class="live-dot"></i>
+      </div>
+      <div class="event-log" id="eventLog" aria-live="polite"></div>
+      <div class="suspicion-box">
+        <div><span>VERDACHT</span><b id="suspicionValue">0%</b></div>
+        <div class="suspicion-track"><i id="suspicionFill"></i></div>
+        <button id="accuseBtn" disabled>SCHUMMLER!</button>
+        <small id="suspectHint">Erst einen Bot auswählen</small>
+      </div>
+      <div class="legend">
+        <span><i class="mini-hold mint"></i>MINT</span>
+        <span><i class="mini-hold coral"></i>KORALLE</span>
+        <span><i class="mini-hold violet"></i>VIOLETT</span>
+        <span><i class="mini-hold gold"></i>GOLD</span>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal-backdrop open" id="startModal">
+    <section class="start-card" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+      <div class="start-visual" aria-hidden="true">
+        <div class="big-hold"></div>
+        <div class="drum-ring"></div>
+        <div class="stick stick-a"></div><div class="stick stick-b"></div>
+        <span class="burst b1">+20</span><span class="burst b2">BOOM</span>
+      </div>
+      <p class="eyebrow">BOULDERN × PERCUSSION</p>
+      <h1 id="startTitle">HALT DICH FEST.<br><em>ES WIRD LAUT.</em></h1>
+      <p>Lege Farbe, Zahl oder Effekt. Strafkarten dürfen gestapelt werden – bis jemand von der Wand fliegt.</p>
+      <label class="name-field" for="playerName">DEIN SPIELNAME
+        <input id="playerName" maxlength="14" autocomplete="nickname" placeholder="z. B. CHALKBEAST" required>
+      </label>
+      <span class="name-error" id="nameError" aria-live="polite"></span>
+      <button class="primary-button" id="startBtn">DUELL STARTEN <span>↗</span></button>
+      <small>1 SPIELER · 3 SCHUMMELNDE BOTS</small>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="rulesModal">
+    <section class="rules-card" role="dialog" aria-modal="true" aria-labelledby="rulesTitle">
+      <button class="close-button" id="closeRules" aria-label="Regeln schließen">×</button>
+      <p class="eyebrow">DAS ROUTENBUCH</p>
+      <h2 id="rulesTitle">Kurz. Hart. Laut.</h2>
+      <ol>
+        <li><b>Matchen.</b> Lege dieselbe Route, Zahl oder denselben Effekt.</li>
+        <li><b>Kontern.</b> Auf eine Ziehkarte darf jede andere Ziehkarte. Die Strafe wächst.</li>
+        <li><b>CRUX rufen.</b> Bei einer Karte den Knopf drücken. Vergessen kostet vier.</li>
+        <li><b>Gewinnen.</b> Wer zuerst keine Griffe mehr hat, toppt die Route.</li>
+      </ol>
+      <div class="danger-list"><span>BREAK</span><span>ABSEILEN</span><span>BETA-TAUSCH</span><span>+2 PUMP</span><span>+6 TROMMELWIRBEL</span><span>+8 CHALK BLAST</span><span>+12 DOUBLE KICK</span><span>+16 WALL COLLAPSE</span><span>+20 WALL OF SOUND</span><span>CRASH SOLO</span><span>FREE SOLO</span></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="colorModal">
+    <section class="color-card" role="dialog" aria-modal="true" aria-labelledby="colorTitle">
+      <p class="eyebrow">ROUTE SETZEN</p>
+      <h2 id="colorTitle">Welcher Griff?</h2>
+      <div class="color-grid">
+        <button data-color="mint" class="mint">MINT</button>
+        <button data-color="coral" class="coral">KORALLE</button>
+        <button data-color="violet" class="violet">VIOLETT</button>
+        <button data-color="gold" class="gold">GOLD</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="endModal">
+    <section class="end-card" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+      <p class="eyebrow" id="endEyebrow">ROUTE GETOPPT</p>
+      <h2 id="endTitle">DU HÄNGST NOCH!</h2>
+      <p id="endText">BeatBot liegt unter einem Berg Strafkarten.</p>
+      <button class="primary-button" id="restartBtn">NOCH EINE RUNDE <span>↻</span></button>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="game.js"></script>
+  <script src="name.js"></script>
+  <script src="webmcp.js"></script>
+</body>
+</html>
