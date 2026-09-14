@@ -13,3 +13,39 @@
 .player-hand::-webkit-scrollbar-thumb{background:var(--coral);border-radius:0}
 .player-hand .game-card{scroll-snap-align:center}
 @media(max-width:900px){.player-hand{justify-content:flex-start}}
+
+.card-count{
+  min-width:94px;
+  padding:5px 8px;
+  background:var(--ink);
+  color:var(--cream);
+  border:2px solid var(--cream);
+  outline:2px solid var(--ink);
+  text-align:center;
+  line-height:1;
+  white-space:nowrap;
+}
+.card-count b{
+  display:inline-block;
+  max-width:100%;
+  font-size:clamp(15px,1.6vw,24px);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.04em;
+  margin-right:4px;
+}
+.player-card-count{display:flex;flex-direction:column;align-items:center;min-width:112px}
+.player-card-count b{font-size:clamp(18px,2.1vw,30px);margin:0}
+.player-card-count span{font:800 10px "Barlow Condensed",sans-serif;letter-spacing:.12em;margin-top:3px}
+.hand-window{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.72);border:1px solid var(--ink);padding:3px}
+.hand-window button{width:30px;height:28px;border:0;background:var(--ink);color:white;font-size:20px;line-height:1}
+.hand-window button:disabled{opacity:.25}
+.hand-window span{min-width:126px;text-align:center;font:800 11px "Barlow Condensed",sans-serif;letter-spacing:.06em}
+@media(max-width:900px){
+  .opponent-seat .card-count{display:block!important;right:0;bottom:-6px;min-width:72px;padding:3px 5px;transform:scale(.82);transform-origin:right bottom}
+  .hand-window span{min-width:90px}
+}
+@media(max-width:620px){
+  .player-card-count{min-width:82px}
+  .hand-window{position:absolute;left:50%;transform:translateX(-50%);top:4px}
+  .hand-window span{min-width:72px;font-size:9px}
+}
