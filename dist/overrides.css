@@ -64,12 +64,12 @@
   color:white;
   background:var(--coral);
   box-shadow:7px 7px 0 var(--ink);
-  animation:taunt-pop 1.5s cubic-bezier(.16,.8,.24,1) both;
+  animation:taunt-pop 5s cubic-bezier(.16,.8,.24,1) both;
 }
 @keyframes taunt-pop{
   0%{opacity:0;transform:scale(.35) rotate(-7deg)}
-  16%{opacity:1;transform:scale(1.35) rotate(2deg)}
-  72%{opacity:1;transform:scale(1.18) rotate(-1deg)}
+  5%{opacity:1;transform:scale(1.35) rotate(2deg)}
+  92%{opacity:1;transform:scale(1.18) rotate(-1deg)}
   100%{opacity:0;transform:scale(.85) translateY(-14px)}
 }
 @media(max-width:620px){
@@ -78,8 +78,8 @@
   .speech.talking{position:fixed;left:50%;top:82px;transform-origin:center;width:min(330px,86vw);max-width:none;font-size:16px;text-align:center}
   @keyframes taunt-pop{
     0%{opacity:0;transform:translateX(-50%) scale(.35) rotate(-5deg)}
-    16%{opacity:1;transform:translateX(-50%) scale(1.08) rotate(1deg)}
-    72%{opacity:1;transform:translateX(-50%) scale(1) rotate(-1deg)}
+    5%{opacity:1;transform:translateX(-50%) scale(1.08) rotate(1deg)}
+    92%{opacity:1;transform:translateX(-50%) scale(1) rotate(-1deg)}
     100%{opacity:0;transform:translateX(-50%) scale(.85) translateY(-12px)}
   }
 }
