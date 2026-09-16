@@ -83,3 +83,11 @@
     100%{opacity:0;transform:translateX(-50%) scale(.85) translateY(-12px)}
   }
 }
+
+.game-card.scribbled{background:#fff9d9!important;border:3px dashed #34302b;border-radius:3px 12px 5px 8px;transform:rotate(-3deg);color:#202846;box-shadow:-4px 6px 0 #545048,0 10px 18px #0003}
+.game-card.scribbled:before{inset:0;width:100%;height:100%;border-radius:0;transform:none;background:repeating-linear-gradient(transparent 0 18px,#889db62e 19px 20px);opacity:1}
+.game-card.scribbled:after{display:none}
+.scribble-stamp{position:absolute;top:7px;left:5px;right:5px;font:800 10px "DM Sans",sans-serif;color:#b2292c;border-bottom:2px solid #b2292c;transform:rotate(4deg)}
+.scribble-note{position:absolute;inset:28px 7px 20px;display:flex;align-items:center;justify-content:center;text-align:center;font:bold italic 16px/1.15 "Comic Sans MS","Segoe Print",cursive;transform:rotate(-3deg);overflow-wrap:anywhere}
+.scribble-sign{position:absolute;bottom:5px;right:6px;font:italic 12px "Segoe Print",cursive;text-decoration:underline}
+.rules-card{max-height:90vh;overflow-y:auto}
